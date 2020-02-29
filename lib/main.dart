@@ -17,8 +17,8 @@ class PersonalExpenseApp extends StatelessWidget {
   final List<Transaction> _transactions = [
     Transaction(
       id: 't1',
-      title: 'New Shoes',
-      amount: 2000.00,
+      title: 'Breakfast',
+      amount: 60.00,
       date: DateTime.now(),
     ),
     Transaction(
@@ -80,8 +80,19 @@ class PersonalExpenseApp extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(tx.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-                        Text(tx.date.toString()),
+                        Text(
+                          tx.title,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          tx.date.toString(),
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
                       ],
                     ),
                   ],
