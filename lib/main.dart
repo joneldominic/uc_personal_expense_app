@@ -43,7 +43,7 @@ class PersonalExpenseApp extends StatelessWidget {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
             width: double.infinity,
@@ -56,7 +56,20 @@ class PersonalExpenseApp extends StatelessWidget {
           Column(
             children: _transactions.map((tx) {
               return Card(
-                child: Text(tx.title),
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      child: Text('₱ ${tx.amount.toStringAsFixed(2)}'),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(tx.title),
+                        Text(tx.date.toString()),
+                      ],
+                    ),
+                  ],
+                ),
               );
             }).toList(),
           ),
