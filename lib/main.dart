@@ -49,7 +49,7 @@ class PersonalExpenseApp extends StatelessWidget {
             width: double.infinity,
             child: Card(
               color: Colors.blue,
-              elevation: 5.0,
+              elevation: 5,
               child: Text('CHART'),
             ),
           ),
@@ -83,13 +83,14 @@ class PersonalExpenseApp extends StatelessWidget {
                         Text(
                           tx.title,
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Text(
                           tx.date.toString(),
                           style: TextStyle(
+                            fontSize: 13,
                             color: Colors.grey,
                           ),
                         ),
