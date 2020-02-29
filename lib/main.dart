@@ -27,6 +27,12 @@ class PersonalExpenseApp extends StatelessWidget {
       amount: 50.00,
       date: DateTime.now(),
     ),
+    Transaction(
+      id: 't3',
+      title: 'Dinner',
+      amount: 75.00,
+      date: DateTime.now(),
+    ),
   ];
 
   @override
