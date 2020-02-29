@@ -17,8 +17,8 @@ class PersonalExpenseApp extends StatelessWidget {
   final List<Transaction> _transactions = [
     Transaction(
       id: 't1',
-      title: 'New Shoes',
-      amount: 2000.00,
+      title: 'Breakfast',
+      amount: 60.00,
       date: DateTime.now(),
     ),
     Transaction(
@@ -59,13 +59,40 @@ class PersonalExpenseApp extends StatelessWidget {
                 child: Row(
                   children: <Widget>[
                     Container(
-                      child: Text('₱ ${tx.amount.toStringAsFixed(2)}'),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.purple,
+                          width: 2,
+                        ),
+                      ),
+                      margin:
+                          EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        '₱ ${tx.amount.toStringAsFixed(2)}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.purple,
+                        ),
+                      ),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(tx.title),
-                        Text(tx.date.toString()),
+                        Text(
+                          tx.title,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          tx.date.toString(),
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
                       ],
                     ),
                   ],
