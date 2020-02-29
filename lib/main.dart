@@ -61,19 +61,26 @@ class PersonalExpenseApp extends StatelessWidget {
                     Container(
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: Colors.black,
+                          color: Colors.purple,
                           width: 2,
                         ),
                       ),
                       margin:
                           EdgeInsets.symmetric(horizontal: 10, vertical: 15),
                       padding: EdgeInsets.all(10),
-                      child: Text('₱ ${tx.amount.toStringAsFixed(2)}'),
+                      child: Text(
+                        '₱ ${tx.amount.toStringAsFixed(2)}',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.purple,
+                        ),
+                      ),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(tx.title),
+                        Text(tx.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
                         Text(tx.date.toString()),
                       ],
                     ),
