@@ -53,9 +53,13 @@ class PersonalExpenseApp extends StatelessWidget {
               child: Text('CHART'),
             ),
           ),
-          Card(
-            child: Text('LIST OF EXPENSES'),
-          )
+          Column(
+            children: _transactions.map((tx) {
+              return Card(
+                child: Text(tx.title),
+              );
+            }).toList(),
+          ),
         ],
       ),
     );
