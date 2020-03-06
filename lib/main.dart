@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import './transaction.dart';
 
@@ -43,7 +44,7 @@ class PersonalExpenseApp extends StatelessWidget {
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.start,
+        // mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Container(
             width: double.infinity,
@@ -51,6 +52,14 @@ class PersonalExpenseApp extends StatelessWidget {
               color: Colors.blue,
               elevation: 5,
               child: Text('CHART'),
+            ),
+          ),
+          Card(
+            child: Column(
+              children: <Widget>[
+                TextField(),
+                TextField(),
+              ],
             ),
           ),
           Column(
@@ -88,7 +97,8 @@ class PersonalExpenseApp extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          tx.date.toString(),
+                          DateFormat('MMMM dd, y')
+                              .format(tx.date), // Intl Package
                           style: TextStyle(
                             fontSize: 13,
                             color: Colors.grey,
