@@ -36,9 +36,9 @@ class PersonalExpenseApp extends StatelessWidget {
     ),
   ];
 
-  // Property Input
-  String titleInput;
-  String amountInput;
+  // Property Controller as Input...
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -66,18 +66,16 @@ class PersonalExpenseApp extends StatelessWidget {
                 children: <Widget>[
                   TextField(
                     decoration: InputDecoration(labelText: 'Title'),
-                    onChanged: (val) {
-                      titleInput = val;
-                    },
+                    controller: titleController,
                   ),
                   TextField(
                     decoration: InputDecoration(labelText: 'Amount'),
-                    onChanged: (val) => amountInput = val,
+                    controller: amountController,
                   ),
                   FlatButton(
                     onPressed: () {
-                      print('Title: $titleInput');
-                      print('Amount: $amountInput');
+                      print('Title: ${titleController.text}');
+                      print('Amount: ${amountController.text}');
                     },
                     child: Text('Add Transcation'),
                     textColor: Colors.purple,
