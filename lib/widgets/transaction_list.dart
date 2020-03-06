@@ -4,7 +4,6 @@ import 'package:intl/intl.dart';
 import '../models/transaction.dart';
 
 class TransactionList extends StatelessWidget {
-  
   final List<Transaction> transactions;
 
   TransactionList(this.transactions);
@@ -30,8 +29,9 @@ class TransactionList extends StatelessWidget {
                   child: Text(
                     '₱ ${transactions[index].amount.toStringAsFixed(2)}',
                     style: TextStyle(
-                      fontSize: 18,
                       fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      color: Colors.purple,
                     ),
                   ),
                 ),
