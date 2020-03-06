@@ -55,11 +55,24 @@ class PersonalExpenseApp extends StatelessWidget {
             ),
           ),
           Card(
-            child: Column(
-              children: <Widget>[
-                TextField(),
-                TextField(),
-              ],
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: <Widget>[
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Title'),
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Amount'),
+                  ),
+                  FlatButton(
+                    onPressed: () {},
+                    child: Text('Add Transcation'),
+                    textColor: Colors.purple,
+                  )
+                ],
+              ),
             ),
           ),
           Column(
