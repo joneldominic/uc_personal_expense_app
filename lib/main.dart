@@ -36,6 +36,10 @@ class PersonalExpenseApp extends StatelessWidget {
     ),
   ];
 
+  // Property Input
+  String titleInput;
+  String amountInput;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,12 +66,19 @@ class PersonalExpenseApp extends StatelessWidget {
                 children: <Widget>[
                   TextField(
                     decoration: InputDecoration(labelText: 'Title'),
+                    onChanged: (val) {
+                      titleInput = val;
+                    },
                   ),
                   TextField(
                     decoration: InputDecoration(labelText: 'Amount'),
+                    onChanged: (val) => amountInput = val,
                   ),
                   FlatButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      print('Title: $titleInput');
+                      print('Amount: $amountInput');
+                    },
                     child: Text('Add Transcation'),
                     textColor: Colors.purple,
                   )
