@@ -10,6 +10,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "Personal Expenses",
+      theme: ThemeData(
+        primarySwatch: Colors.pink,
+        accentColor: Colors.pinkAccent,
+      ),
       home: PersonalExpenseApp(),
     );
   }
@@ -72,7 +77,7 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Personal Expense Recorder'),
+        title: Text('Personal Expenses'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
@@ -83,7 +88,6 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          // mainAxisAlignment: MainAxisAlignment.start, // Default
           children: <Widget>[
             Container(
               width: double.infinity,
