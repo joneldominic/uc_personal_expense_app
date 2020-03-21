@@ -64,6 +64,12 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
     // ),
   ];
 
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((transaction){
+      return transaction.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
+    }).toList(); // Since it returns an Iterable by default
+  }
+
   void _addNewTransaction(String title, double amount) {
     final newTransaction = Transaction(
       id: DateTime.now().toString(),
@@ -111,10 +117,7 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
-              width: double.infinity,
-              child: Chart(_userTransactions),
-            ),
+            Chart(_recentTransactions),
             TransactionList(_userTransactions),
           ],
         ),
