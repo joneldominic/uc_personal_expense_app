@@ -3,6 +3,7 @@ import 'package:personal_expense_app/widgets/transaction_list.dart';
 
 import 'models/transaction.dart';
 import 'widgets/new_transaction.dart';
+import 'widgets/chart.dart';
 
 main() => runApp(MyApp());
 
@@ -112,11 +113,7 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
           children: <Widget>[
             Container(
               width: double.infinity,
-              child: Card(
-                color: Colors.blue,
-                elevation: 5,
-                child: Text('CHART'),
-              ),
+              child: Chart(_userTransactions),
             ),
             TransactionList(_userTransactions),
           ],
