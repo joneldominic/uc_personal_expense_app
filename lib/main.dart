@@ -119,8 +119,9 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     final isLandscape =
-        MediaQuery.of(context).orientation == Orientation.landscape;
+        mediaQuery.orientation == Orientation.landscape;
 
     final appBar = AppBar(
       title: Text(
@@ -138,8 +139,8 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
     );
 
     final transactionListWiget = Container(
-      height: (MediaQuery.of(context).size.height -
-              MediaQuery.of(context).padding.top -
+      height: (mediaQuery.size.height -
+              mediaQuery.padding.top -
               appBar.preferredSize.height) *
           0.70,
       child: TransactionList(_userTransactions, _deleteTransaction),
@@ -153,8 +154,8 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
           children: <Widget>[
             if (!isLandscape) ...[
               Container(
-                height: (MediaQuery.of(context).size.height -
-                        MediaQuery.of(context).padding.top -
+                height: (mediaQuery.size.height -
+                        mediaQuery.padding.top -
                         appBar.preferredSize.height) *
                     0.3,
                 child: Chart(_recentTransactions),
@@ -177,8 +178,8 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
               ),
               _showChart
                   ? Container(
-                      height: (MediaQuery.of(context).size.height -
-                              MediaQuery.of(context).padding.top -
+                      height: (mediaQuery.size.height -
+                              mediaQuery.padding.top -
                               appBar.preferredSize.height) *
                           0.67,
                       child: Chart(_recentTransactions),
