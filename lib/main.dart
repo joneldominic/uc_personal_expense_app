@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:personal_expense_app/widgets/transaction_list.dart';
+import 'package:flutter/services.dart';
 
-import 'models/transaction.dart';
-import 'widgets/new_transaction.dart';
-import 'widgets/chart.dart';
+import './models/transaction.dart';
+import './widgets/new_transaction.dart';
+import './widgets/chart.dart';
+import './widgets/transaction_list.dart';
 
-main() => runApp(MyApp());
+// main() => runApp(MyApp());
+void main()  {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((_) => runApp(MyApp()));
+}
 
 class MyApp extends StatelessWidget {
   @override
