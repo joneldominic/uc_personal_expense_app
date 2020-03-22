@@ -1,10 +1,11 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 
-import './models/transaction.dart';
 import './widgets/new_transaction.dart';
 import './widgets/chart.dart';
 import './widgets/transaction_list.dart';
+import './models/transaction.dart';
 
 main() => runApp(MyApp());
 
@@ -120,8 +121,7 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
-    final isLandscape =
-        mediaQuery.orientation == Orientation.landscape;
+    final isLandscape = mediaQuery.orientation == Orientation.landscape;
 
     final appBar = AppBar(
       title: Text(
@@ -167,7 +167,8 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Text('Show Chart'),
-                  Switch(
+                  Switch.adaptive(
+                      activeColor: Theme.of(context).accentColor,
                       value: _showChart,
                       onChanged: (newValue) {
                         setState(() {
@@ -190,10 +191,12 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () => _startAddNewTransaction(context),
-      ),
+      floatingActionButton: Platform.isIOS
+          ? Container() //Renders nothing if on IOS device
+          : FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () => _startAddNewTransaction(context),
+            ),
     );
   }
 }
