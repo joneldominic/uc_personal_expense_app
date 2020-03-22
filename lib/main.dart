@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 
 import './models/transaction.dart';
 import './widgets/new_transaction.dart';
 import './widgets/chart.dart';
 import './widgets/transaction_list.dart';
 
-// main() => runApp(MyApp());
-void main()  {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]).then((_) => runApp(MyApp()));
-}
+main() => runApp(MyApp());
+
+// void main()  {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   SystemChrome.setPreferredOrientations([
+//     DeviceOrientation.portraitUp,
+//     DeviceOrientation.portraitDown,
+//   ]).then((_) => runApp(MyApp()));
+// }
 
 class MyApp extends StatelessWidget {
   @override
@@ -55,25 +56,27 @@ class PersonalExpenseApp extends StatefulWidget {
 
 class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
   final List<Transaction> _userTransactions = [
-    Transaction(
-      id: 't1',
-      title: 'Breakfast',
-      amount: 60.00,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'Load',
-      amount: 50.00,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't3',
-      title: 'Dinner',
-      amount: 75.00,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //   id: 't1',
+    //   title: 'Breakfast',
+    //   amount: 60.00,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't2',
+    //   title: 'Load',
+    //   amount: 50.00,
+    //   date: DateTime.now(),
+    // ),
+    // Transaction(
+    //   id: 't3',
+    //   title: 'Dinner',
+    //   amount: 75.00,
+    //   date: DateTime.now(),
+    // ),
   ];
+
+  bool _showChart = false;
 
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((transaction) {
@@ -137,14 +140,25 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Container(
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('Show Chart'),
+                Switch(value: _showChart, onChanged: (newValue) {
+                  setState(() {
+                    _showChart = newValue;
+                  });
+                }),
+              ],
+            ),
+            _showChart ? Container(
               height: (MediaQuery.of(context).size.height -
                       MediaQuery.of(context).padding.top -
                       appBar.preferredSize.height) *
                   0.3,
               child: Chart(_recentTransactions),
-            ),
-            Container(
+            )
+            : Container(
               height: (MediaQuery.of(context).size.height -
                       MediaQuery.of(context).padding.top -
                       appBar.preferredSize.height) *
