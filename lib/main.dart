@@ -108,27 +108,41 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Personal Expenses',
-          style: TextStyle(
-            fontFamily: 'OpenSans',
-          ),
+    final appBar = AppBar(
+      title: Text(
+        'Personal Expenses',
+        style: TextStyle(
+          fontFamily: 'OpenSans',
         ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add),
-            onPressed: () => _startAddNewTransaction(context),
-          ),
-        ],
       ),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () => _startAddNewTransaction(context),
+        ),
+      ],
+    );
+
+    return Scaffold(
+      appBar: appBar,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Chart(_recentTransactions),
-            TransactionList(_userTransactions, _deleteTransaction),
+            Container(
+              height: (MediaQuery.of(context).size.height -
+                      MediaQuery.of(context).padding.top -
+                      appBar.preferredSize.height) *
+                  0.4,
+              child: Chart(_recentTransactions),
+            ),
+            Container(
+              height: (MediaQuery.of(context).size.height -
+                      MediaQuery.of(context).padding.top -
+                      appBar.preferredSize.height) *
+                  0.6,
+              child: TransactionList(_userTransactions, _deleteTransaction),
+            ),
           ],
         ),
       ),
