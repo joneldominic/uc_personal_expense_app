@@ -155,7 +155,7 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
               height: (MediaQuery.of(context).size.height -
                       MediaQuery.of(context).padding.top -
                       appBar.preferredSize.height) *
-                  0.3,
+                  0.65,
               child: Chart(_recentTransactions),
             )
             : Container(
