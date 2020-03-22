@@ -88,24 +88,24 @@ class PersonalExpenseApp extends StatefulWidget {
 
 class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
   final List<Transaction> _userTransactions = [
-    // Transaction(
-    //   id: 't1',
-    //   title: 'Breakfast',
-    //   amount: 60.00,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: 't2',
-    //   title: 'Load',
-    //   amount: 50.00,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: 't3',
-    //   title: 'Dinner',
-    //   amount: 75.00,
-    //   date: DateTime.now(),
-    // ),
+    Transaction(
+      id: 't1',
+      title: 'Breakfast',
+      amount: 60.00,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Load',
+      amount: 50.00,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'Dinner',
+      amount: 75.00,
+      date: DateTime.now(),
+    ),
   ];
 
   bool _showChart = false;
