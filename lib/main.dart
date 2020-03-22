@@ -17,12 +17,14 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.pinkAccent,
           fontFamily: 'Quicksand',
           textTheme: ThemeData.light().textTheme.copyWith(
-                title: TextStyle(
-                  fontFamily: 'OpenSans',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                ),
+              title: TextStyle(
+                fontFamily: 'OpenSans',
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
               ),
+              button: TextStyle(
+                color: Colors.white,
+              )),
           appBarTheme: AppBarTheme(
             textTheme: ThemeData.light().textTheme.copyWith(
                   title: TextStyle(
@@ -65,8 +67,9 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
   ];
 
   List<Transaction> get _recentTransactions {
-    return _userTransactions.where((transaction){
-      return transaction.date.isAfter(DateTime.now().subtract(Duration(days: 7)));
+    return _userTransactions.where((transaction) {
+      return transaction.date
+          .isAfter(DateTime.now().subtract(Duration(days: 7)));
     }).toList(); // Since it returns an Iterable by default
   }
 
