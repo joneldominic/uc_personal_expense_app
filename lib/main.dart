@@ -160,45 +160,49 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
       child: TransactionList(_userTransactions, _deleteTransaction),
     );
 
-    final pageBody = Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: <Widget>[
-        if (!isLandscape) ...[
-          Container(
-            height: (mediaQuery.size.height -
-                    mediaQuery.padding.top -
-                    appBar.preferredSize.height) *
-                0.3,
-            child: Chart(_recentTransactions),
-          ),
-          transactionListWiget
-        ],
-        if (isLandscape) ...[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text('Show Chart'),
-              Switch.adaptive(
-                  activeColor: Theme.of(context).accentColor,
-                  value: _showChart,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _showChart = newValue;
-                    });
-                  }),
+    final pageBody = SafeArea(
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            if (!isLandscape) ...[
+              Container(
+                height: (mediaQuery.size.height -
+                        mediaQuery.padding.top -
+                        appBar.preferredSize.height) *
+                    0.3,
+                child: Chart(_recentTransactions),
+              ),
+              transactionListWiget
             ],
-          ),
-          _showChart
-              ? Container(
-                  height: (mediaQuery.size.height -
-                          mediaQuery.padding.top -
-                          appBar.preferredSize.height) *
-                      0.67,
-                  child: Chart(_recentTransactions),
-                )
-              : transactionListWiget,
-        ]
-      ],
+            if (isLandscape) ...[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text('Show Chart'),
+                  Switch.adaptive(
+                      activeColor: Theme.of(context).accentColor,
+                      value: _showChart,
+                      onChanged: (newValue) {
+                        setState(() {
+                          _showChart = newValue;
+                        });
+                      }),
+                ],
+              ),
+              _showChart
+                  ? Container(
+                      height: (mediaQuery.size.height -
+                              mediaQuery.padding.top -
+                              appBar.preferredSize.height) *
+                          0.67,
+                      child: Chart(_recentTransactions),
+                    )
+                  : transactionListWiget,
+            ]
+          ],
+        ),
+      ),
     );
 
     return Platform.isIOS
@@ -208,9 +212,7 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
           )
         : Scaffold(
             appBar: appBar,
-            body: SingleChildScrollView(
-              child: pageBody,
-            ),
+            body: pageBody,
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
             floatingActionButton: Platform.isIOS
