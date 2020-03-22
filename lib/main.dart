@@ -121,6 +121,7 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
   Widget build(BuildContext context) {
     final isLandscape =
         MediaQuery.of(context).orientation == Orientation.landscape;
+
     final appBar = AppBar(
       title: Text(
         'Personal Expenses',
@@ -140,7 +141,7 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
       height: (MediaQuery.of(context).size.height -
               MediaQuery.of(context).padding.top -
               appBar.preferredSize.height) *
-          0.7,
+          0.70,
       child: TransactionList(_userTransactions, _deleteTransaction),
     );
 
@@ -150,7 +151,7 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            if (!isLandscape)
+            if (!isLandscape) ...[
               Container(
                 height: (MediaQuery.of(context).size.height -
                         MediaQuery.of(context).padding.top -
@@ -158,8 +159,9 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
                     0.3,
                 child: Chart(_recentTransactions),
               ),
-            if (!isLandscape) transactionListWiget,
-            if (isLandscape)
+              transactionListWiget
+            ],
+            if (isLandscape) ...[
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -173,16 +175,16 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
                       }),
                 ],
               ),
-            if (isLandscape)
               _showChart
                   ? Container(
                       height: (MediaQuery.of(context).size.height -
                               MediaQuery.of(context).padding.top -
                               appBar.preferredSize.height) *
-                          0.65,
+                          0.67,
                       child: Chart(_recentTransactions),
                     )
                   : transactionListWiget,
+            ]
           ],
         ),
       ),
