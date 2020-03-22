@@ -27,7 +27,7 @@ class Chart extends StatelessWidget {
       print(recentWeeklySum);
 
       return {'day': DateFormat.E().format(weekDay), 'amount': recentWeeklySum};
-    });
+    }).reversed.toList();
   }
 
   double get totalSpending {
@@ -38,6 +38,7 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     print(groupedTransactionValues);
 
     return Card(
