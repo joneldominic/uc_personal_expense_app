@@ -73,12 +73,12 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
     }).toList(); // Since it returns an Iterable by default
   }
 
-  void _addNewTransaction(String title, double amount) {
+  void _addNewTransaction(String title, double amount, DateTime chosenDate) {
     final newTransaction = Transaction(
       id: DateTime.now().toString(),
       title: title,
       amount: amount,
-      date: DateTime.now(),
+      date: chosenDate,
     );
 
     setState(() {
