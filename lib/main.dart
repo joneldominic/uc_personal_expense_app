@@ -1,4 +1,5 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 // import 'package:flutter/services.dart';
@@ -149,38 +150,61 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
     });
   }
 
+  Widget _buildLandscapeContent() {/* Alternative Approach instead... */}
+
+  List<Widget> _buildPortraitContent(
+      MediaQueryData mediaQuery, AppBar appBar, Widget transactionListWiget) {
+    return [
+      Container(
+        height: (mediaQuery.size.height -
+                mediaQuery.padding.top -
+                appBar.preferredSize.height) *
+            0.3,
+        child: Chart(_recentTransactions),
+      ),
+      transactionListWiget
+    ];
+  }
+
+  Widget _buildCupertinoNavBar() {
+    return CupertinoNavigationBar(
+      middle: const Text('Personal Expenses'),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          GestureDetector(
+            child: Icon(CupertinoIcons.add),
+            onTap: () => _startAddNewTransaction(context),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAppBar() {
+    return AppBar(
+      title: const Text(
+        'Personal Expenses',
+        style: const TextStyle(
+          fontFamily: 'OpenSans',
+        ),
+      ),
+      actions: <Widget>[
+        IconButton(
+          icon: Icon(Icons.add),
+          onPressed: () => _startAddNewTransaction(context),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
 
-    final PreferredSizeWidget appBar = Platform.isIOS
-        ? CupertinoNavigationBar(
-            middle: const Text('Personal Expenses'),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                GestureDetector(
-                  child: Icon(CupertinoIcons.add),
-                  onTap: () => _startAddNewTransaction(context),
-                ),
-              ],
-            ),
-          )
-        : AppBar(
-            title: const Text(
-              'Personal Expenses',
-              style: const TextStyle(
-                fontFamily: 'OpenSans',
-              ),
-            ),
-            actions: <Widget>[
-              IconButton(
-                icon: Icon(Icons.add),
-                onPressed: () => _startAddNewTransaction(context),
-              ),
-            ],
-          );
+    final PreferredSizeWidget appBar =
+        Platform.isIOS ? _buildCupertinoNavBar() : _buildAppBar();
 
     final transactionListWiget = Container(
       height: (mediaQuery.size.height -
@@ -195,17 +219,11 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            if (!isLandscape) ...[
-              Container(
-                height: (mediaQuery.size.height -
-                        mediaQuery.padding.top -
-                        appBar.preferredSize.height) *
-                    0.3,
-                child: Chart(_recentTransactions),
-              ),
-              transactionListWiget
-            ],
+            if (!isLandscape)
+              ..._buildPortraitContent(
+                  mediaQuery, appBar, transactionListWiget),
             if (isLandscape) ...[
+              // Can be implented in using builderMethod
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
