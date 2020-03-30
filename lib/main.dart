@@ -156,7 +156,7 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
 
     final PreferredSizeWidget appBar = Platform.isIOS
         ? CupertinoNavigationBar(
-            middle: Text('Personal Expenses'),
+            middle: const Text('Personal Expenses'),
             trailing: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
@@ -168,9 +168,9 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
             ),
           )
         : AppBar(
-            title: Text(
+            title: const Text(
               'Personal Expenses',
-              style: TextStyle(
+              style: const TextStyle(
                 fontFamily: 'OpenSans',
               ),
             ),
