@@ -87,7 +87,8 @@ class PersonalExpenseApp extends StatefulWidget {
   _PersonalExpenseAppState createState() => _PersonalExpenseAppState();
 }
 
-class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
+class _PersonalExpenseAppState extends State<PersonalExpenseApp>
+    with WidgetsBindingObserver /* Should always be added in state class */ {
   final List<Transaction> _userTransactions = [
     // Transaction(
     //   id: 't1',
@@ -110,6 +111,24 @@ class _PersonalExpenseAppState extends State<PersonalExpenseApp> {
   ];
 
   bool _showChart = false;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override // Called when the reaches new life cycle
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // setState(() { _notification = state; });
+    print(state);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
 
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((transaction) {
