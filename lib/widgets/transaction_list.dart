@@ -31,13 +31,24 @@ class TransactionList extends StatelessWidget {
               ],
             );
           })
-        : ListView.builder(
+        : /* ListView.builder( /* Theres a bug in ListView.builder in terms of using key */
             itemBuilder: (bCtx, index) {
               return TransactionItem(
+                  key: ValueKey(transactions[index].id),
+                  /* UniqueKey() = Not good since it will update every changes */
                   transaction: transactions[index],
                   deleteTransaction: deleteTransaction);
             },
             itemCount: transactions.length,
+          ); */
+        ListView(
+            children: <Widget>[
+              ...transactions.map((tItem) => TransactionItem(
+                  key: ValueKey(tItem.id),
+                  /* UniqueKey() = Not good since it will update every changes */
+                  transaction: tItem,
+                  deleteTransaction: deleteTransaction))
+            ],
           );
   }
 }
